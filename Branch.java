@@ -77,13 +77,10 @@ public class Branch {
         System.out.println("\nBanyak simpul : "+num);
         System.out.println("Waktu eksekusi : "+(-start+end)/100000+ " ms");
        
-        //BIKIN GRAPH
+        //BIKIN GRAPH, Thanks to Fiqie ulya yang udah ngeshare
         Graph g=new SingleGraph("test");
         //UNTUK MENGATASI GARIS YANG TERTUMPUK
-         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-        //g.addAttribute("ui.quality");
-        //g.addAttribute("ui.antialias");    
-        //CSS STYLE SHEET, Disain nya disini PEMANFAATANNYA DIBAWAH
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
         String styleSheet="node {"+
             " fill-color: black;"+
             " size: 40px;"+
@@ -92,28 +89,17 @@ public class Branch {
             " stroke-width: 1px;text-size:30;text-color:blue;"+
             "}"+//NODE
                 
-            "node.important {"+
-            " fill-color: red;"+
-            " size: 20px;"+
-            "}"+//NODE dengan kelas khusus
-                
             "edge{fill-color: blue;text-size:15; }"+//EDGE GLOBAL
                 
             "edge.target{text-size:25;text-color:red;arrow-size: 10px, 10px;"+
             " fill-color: red;"+//EDGE KHUSUS
             "}";
-        //g manfaatin CSS STYLE SHEET
         g.addAttribute("ui.stylesheet", styleSheet);
-        //Membuat N NODE
-        //NODE GLOBAL 
+        //Membuat N NODE <GLOBAL>
         n-=1;
-        for(int i=0;i<n;i++){
-            //NAMBAH NODE g.addNode("A");
+        for(int i=0;i<n;i++) {
             g.addNode(""+(i+1));
-            //AMBIL NODE BUAT DITAMBAH ATRIBUT
-            Node a=g.getNode(""+(i+1));
-            //Semisal mau diubah ke huruf A 
-           
+            Node a=g.getNode(""+(i+1));           
             a.addAttribute("ui.label", ""+(i+1));
         }
         
@@ -123,10 +109,9 @@ public class Branch {
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 if(i!=j){
-                    //BIKIN SISI PAKE PANAH, KALO GA MAU PANAH HAPUS TRUE nya
+                    //KALO GA MAU PANAH HAPUS TRUE nya
                     x=g.addEdge(""+(i+1)+""+(j+1),""+(i+1),""+(j+1),true);
                     //HABIS BIKIN, KALO MAU NAMBAH ATRIBUT, DI GET DULU
-                    //Edge xi=g.getEdge("AB"));
                     Edge xi=g.getEdge(""+(i+1)+""+(j+1));
                     //INI BIAR GARIS YANG NUMPUK TULISANNYA GA NUMPUK, MISAH
                     if(i<j) xi.setAttribute("ui.style", "text-offset: +15;"); 
@@ -142,7 +127,6 @@ public class Branch {
             xi.addAttribute("ui.class","target");
             result.remove(result.get(0));            
         }
-        //NAMPILIN YEEEEYYYYY
         g.display();
     
     }   

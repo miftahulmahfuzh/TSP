@@ -8,6 +8,6 @@ how to run :
   5. copy Simpul.java source code to the new class
   6. include GraphStream <http://graphstream-project.org/download/>
   7. download "core" and "ui" library
-  8. add thi library to your project
+  8. add this library to your project
   9. clean and build
   
